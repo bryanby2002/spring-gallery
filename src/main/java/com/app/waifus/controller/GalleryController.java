@@ -48,4 +48,10 @@ public class GalleryController {
         }
         return "redirect:/new";
     }
+
+    @GetMapping("/")
+    public String gallery(Model model){
+        model.addAttribute("gallerys", this.galleryServ.ListAll());
+        return "index";
+    }
 }
