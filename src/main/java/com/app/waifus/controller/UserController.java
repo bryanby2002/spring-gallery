@@ -32,7 +32,7 @@ public class UserController {
       Model model) {
     User user = this.userRepo.ValidarUsuario(username, password);
     if (user != null) {
-      redirect.addFlashAttribute("alert", "Welcome " + username + " to control image");
+      redirect.addFlashAttribute("alert", "Welcome " + username);
       return "redirect:/new";
     } else {
       model.addAttribute("error", "Username and password invalid");

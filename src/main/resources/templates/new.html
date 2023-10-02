@@ -13,34 +13,34 @@
   <!--Nav-->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+      <a th:href="@{/}" class="nav-link"  href="#">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="#">Gateroy</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a th:href="@{/login}" class="nav-link" href="#">Login</a>
     </li>
   </ul>
 
-  <!--Mesage alert-->
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-  </ul>
+
+  <div class="container mt-3">
+    <div class="row justify-content-center ">
+      <div class="col col-md-4  ">
+        <p class="fw-bold text-success " th:text="${alert}" ></p>
+      </div>
+    </div>
+  </div>
 
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col col-md-4 card p-3">
         <h1 class="mb-2">New image</h1>
         <form th:action="@{/new-image}" method="post" enctype="multipart/form-data" th:object="${gallery}">
+          <div class="mb-3">
+            <label for="">Image:</label>
+            <input  name="file" class="form-control" type="file">
+          </div>
           <div class="mb-3">
             <label for="">Description:</label>
             <input th:field="*{description}" class="form-control" type="text" name="description" required>
@@ -55,12 +55,8 @@
               <option value="Animal">Animal</option>
               <option value="Paisaje">Paisaje</option>
               <option value="Universo">Universo</option>
-              <option value="Pelicula y Serie">Pelicula y Serie</option>
+              <option value="Peliculas">Pelicula y Serie</option>
             </select>
-          </div>
-          <div class="mb-3">
-            <label for="">Image:</label>
-            <input  name="file" class="form-control" type="file">
           </div>
           <input class="btn btn-success" type="submit" value="Save">
         </form>
@@ -68,14 +64,14 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container mt-3">
     <div class="row justify-content-center ">
-      <div class="col">
+      <div class="col col-md-4">
         <div th:if="${mensaje}">
-          <p th:text="${mensaje}"></p>
+          <p class="text-center fw-bold text-success " th:text="${mensaje}"></p>
         </div>
-        <div class="text-center " th:if="${error}">
-          <p class="text-center" th:text="${error}"></p>
+        <div th:if="${error}">
+          <p class="text-center fw-bold text-success " th:text="${error}"></p>
         </div>
       </div>
     </div>

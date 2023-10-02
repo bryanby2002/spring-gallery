@@ -13,17 +13,17 @@
   <!--Nav-->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+      <a th:href="@{/}" class="nav-link " href="#">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="#">Gateroy</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a th:href="@{/login}" class="nav-link active " ref="#">Login</a>
     </li>
   </ul>
 
-  <div class="container mt-3">
+  <div class="container mt-3 table-responsive ">
     <div class="row justify-content-center">
       <div class="col col-md-4 card p-3">
         <h1 class="mb-2">Login</h1>

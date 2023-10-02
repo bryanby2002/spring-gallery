@@ -8,47 +8,52 @@
   <link rel="stylesheet" th:href="@{css/style.css}">
   <title>Login</title>
 </head>
+
 <body>
-  
+
   <!--Nav-->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+      <a th:href="@{/}" class="nav-link active" aria-current="page" href="#">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="#">Gateroy</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a th:href="@{/login}" class="nav-link" href="#">Login</a>
     </li>
   </ul>
 
+  <!--form search-->
   <div class="container mt-5">
     <div class="row">
       <div class="col col-md-3">
-        <form th:action="@{/}"">
+        <form th:action="@{/}">
           <div class="mb-3 d-flex gap-2">
-            <input class="form-control " type="text" name="palabra" placeholder="Search">
+            <input class="form-control " type="text" name="palabra" placeholder="Search" th:value="${palabra}">
             <input class="btn btn-success" type="submit" value="Search">
           </div>
         </form>
       </div>
     </div>
   </div>
-  
+
   <!--container-images-->
   <div class="mt-1 container">
     <div class="masonry">
       <div th:each="gallery : ${gallerys}" class="item">
         <div class="card">
           <div class="card-inner">
-            <img th:src="@{upload/{imgName}(imgName=${gallery.img})}" class="card-img-top" alt="...">
+            <img 
+            th:src="@{upload/{imgName}(imgName=${gallery.img})}" 
+            class="card-img-top" 
+            alt="${gallery.description}"/>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
 </body>
+
 </html>

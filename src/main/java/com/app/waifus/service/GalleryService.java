@@ -18,7 +18,10 @@ public class GalleryService {
         return this.galleryRepo.save(gallery);
     }
 
-    public List<Gallery> ListAll(){
+    public List<Gallery> ListAll(String palabra){
+        if(palabra != null){
+            return this.galleryRepo.listWord(palabra);
+        }
         return this.galleryRepo.findAll();
     }
 

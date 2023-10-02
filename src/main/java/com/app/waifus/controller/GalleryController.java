@@ -3,6 +3,7 @@ package com.app.waifus.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,33 +26,34 @@ public class GalleryController {
     @Autowired
     private GalleryService galleryServ;
 
+    @GetMapping("/")
+    public String galleryList(Model model,@Param("palabra") String palabra){
+        model.addAttribute("gallerys", this.galleryServ.ListAll(palabra));
+        model.addAttribute("palabra", palabra);
+        return "index";
+    }
+
     @GetMapping("/new")
     public String newForm(Model model) {
         model.addAttribute("gallery", new Gallery());
         return "new";
     }
-
+    
     @PostMapping("/new-image")
     public String save(
             @RequestParam("file") MultipartFile file,
             @ModelAttribute("gallery") Gallery gallery,
             RedirectAttributes redirect) {
         try {
-            this.uploadImage.upload(file);
-            String fileName = file.getOriginalFilename();
-            gallery.setImg(fileName);
+            this.uploadImage.upload(file,gallery);
             this.galleryServ.save(gallery);
             redirect.addFlashAttribute("mensaje", "Saved image");
 
         } catch (IOException e) {
+            e.printStackTrace();
             redirect.addFlashAttribute("error", "Error al subir la imagen");
         }
         return "redirect:/new";
     }
 
-    @GetMapping("/")
-    public String gallery(Model model){
-        model.addAttribute("gallerys", this.galleryServ.ListAll());
-        return "index";
-    }
 }
