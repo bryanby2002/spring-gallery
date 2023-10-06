@@ -14,7 +14,7 @@ public interface GalleryRepository  extends JpaRepository<Gallery, Integer>{
 
   // ---> metodos aqui
   //Metodo abstracto para listar la gallery segun la palabra 
-  @Query("SELECT g FROM Gallery g WHERE g.category LIKE %:palabra% or g.description LIKE %:palabra% or g.img LIKE %:palabra%")
+  @Query("SELECT g FROM Gallery g WHERE g.category LIKE %:palabra% or g.etiqueta LIKE %:palabra% or g.img LIKE %:palabra%")
   public List<Gallery> listWord(@Param("palabra") String palabra);
   
   

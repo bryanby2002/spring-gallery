@@ -13,7 +13,7 @@
   <!--Nav-->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a th:href="@{/}" class="nav-link active" aria-current="page" href="#">Home</a>
+      <a th:href="@{/}" class="nav-link" aria-current="page" href="#">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Gateroy</a>
@@ -27,7 +27,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col col-md-3">
-        <form th:action="@{/}">
+        <form th:action="@{/control}">
           <div class="mb-3 d-flex gap-2">
             <input class="form-control " type="text" name="palabra" placeholder="Search" th:value="${palabra}">
             <input class="btn btn-success" type="submit" value="Search">
@@ -41,13 +41,32 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <table>
+        <table class="table table-hover table-bordered ">
           <thead>
             <tr>
-              <th></th>
+              <th>Id</th>
+              <th>Gategory</th>
+              <th>Etiquetas</th>
+              <th>Image</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <tr th:each="gallery : ${gallerys}">
+              <td th:text="${gallery.id}">1</td>
+              <td th:text="${gallery.category}">anime</td>
+              <td th:text="${gallery.etiqueta}">chica con katana</td>
+              <td>
+                <img 
+                th:src="@{upload/{imgName}(imgName=${gallery.img})}" 
+                width="50px">
+              </td>
+              <td>
+                <a th:href="@{/{id}(id=${gallery.id})}" class="btn bg-warning " href="">Edit</a>
+                <a th:href="@{/delete/{id}(id=${gallery.id})}" class="btn bg-danger " href="">Delete</a>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

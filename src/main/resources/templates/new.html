@@ -42,8 +42,9 @@
             <input  name="file" class="form-control" type="file">
           </div>
           <div class="mb-3">
-            <label for="">Description:</label>
-            <input th:field="*{description}" class="form-control" type="text" name="description" required>
+            <label for="">Etiquetas:</label>
+            <input th:field="*{etiqueta}" class="form-control" type="text" name="description" required
+            placeholder="Escriba separado por coma">
           </div>
           <div class="mb-3">
             <label for="">Category:</label>
@@ -55,7 +56,8 @@
               <option value="Animal">Animal</option>
               <option value="Paisaje">Paisaje</option>
               <option value="Universo">Universo</option>
-              <option value="Peliculas">Pelicula y Serie</option>
+              <option value="Ciudad">Ciudad</option>
+              <option value="Pelicula">Pelicula</option>
             </select>
           </div>
           <input class="btn btn-success" type="submit" value="Save">

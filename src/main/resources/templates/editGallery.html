@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <title>Images</title>
+</head>
+
+<body>
+
+  <!--Nav-->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a th:href="@{/}" class="nav-link"  href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Gateroy</a>
+    </li>
+    <li class="nav-item">
+      <a th:href="@{/login}" class="nav-link" href="#">Login</a>
+    </li>
+  </ul>
+
+
+  <div class="container mt-3">
+    <div class="row justify-content-center ">
+      <div class="col col-md-4  ">
+        <p class="fw-bold text-success " th:text="${alert}" ></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col col-md-4 card p-3">
+        <h1 class="mb-2">Update image</h1>
+        <form th:action="@{/{id}(id=${gallery.id})}" method="post" enctype="multipart/form-data" th:object="${gallery}">
+          <div class="mb-3">
+            <label for="">Image:</label> <br>
+            <img th:src="@{upload/{imgName}(imgName=${gallery.img})}" width="50px">
+            <div th:value="${file}" th:text="${gallery.img}" class="infoImage"></div>
+            <input name="file" class="form-control" type="file" >
+          </div>
+          <div class="mb-3">
+            <label for="">Etiquetas:</label>
+            <input th:field="*{etiqueta}" class="form-control" type="text" name="description" required
+            placeholder="Escriba separado por coma">
+          </div>
+          <div class="mb-3">
+            <label for="">Category:</label>
+            <select th:field="*{category}" class="form-control" name="category" id="">
+              <option value="0">Selecione</option>
+              <option value="Anime">Anime</option>
+              <option value="Auto">Auto</option>
+              <option value="Deporte">Deporte</option>
+              <option value="Animal">Animal</option>
+              <option value="Paisaje">Paisaje</option>
+              <option value="Universo">Universo</option>
+              <option value="Ciudad">Ciudad</option>
+              <option value="Pelicula">Pelicula</option>
+            </select>
+          </div>
+          <input class="btn btn-success" type="submit" value="Update">
+          <a th:href="@{/control}" class="btn bg-success ">Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -15,7 +15,7 @@ public class Gallery {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private String description;
+  private String etiqueta;
   private String category;
   private String img;
   
