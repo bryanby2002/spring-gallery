@@ -19,6 +19,7 @@ public class UserController {
   @Autowired
   private UserRepository userRepo;
 
+  
   @GetMapping("/login")
   public String loginForm() {
     return "login";
@@ -33,12 +34,17 @@ public class UserController {
     User user = this.userRepo.ValidarUsuario(username, password);
     if (user != null) {
       redirect.addFlashAttribute("alert", "Welcome " + username);
-      return "redirect:/new";
+      return "options";
     } else {
       model.addAttribute("error", "Username and password invalid");
       return "login";
     }
   }
+
+  @GetMapping("/options")
+    public String options(){
+        return "options";
+    }
 
   
 }
