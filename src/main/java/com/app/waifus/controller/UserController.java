@@ -34,7 +34,7 @@ public class UserController {
     User user = this.userRepo.ValidarUsuario(username, password);
     if (user != null) {
       redirect.addFlashAttribute("alert", "Welcome " + username);
-      return "options";
+      return "redirect:/options";
     } else {
       model.addAttribute("error", "Username and password invalid");
       return "login";
